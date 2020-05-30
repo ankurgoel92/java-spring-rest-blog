@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +24,8 @@ public class Author {
   private String username;
   @JsonIgnore
   private String password;
+  @Version
+  private Long version;
   @OneToMany
   private List<Post> posts;
 

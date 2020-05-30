@@ -13,6 +13,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -20,6 +23,8 @@ public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @NotNull
+  @Size(min = 4, max = 100)
   private String title;
   @Column(length = 1000000)
   @Lob
@@ -27,7 +32,8 @@ public class Post {
   @Temporal(TemporalType.DATE)
   @CreationTimestamp
   private Date date;
-
+  @Version
+  private Long version;
   @ManyToOne(fetch = FetchType.EAGER)
   private Author author;
 
